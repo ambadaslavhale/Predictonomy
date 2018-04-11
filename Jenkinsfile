@@ -16,9 +16,8 @@ node() {
 	  	echo "removing existing images first"
 	  	sh (
 	    """\
-	    script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
-	    """,
-	  	)
+	    script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",\""",
+	    )
 	  	echo "images removed now onto building a new image"
   		app = docker.build("${appRepoName}")
    		echo "docker build succeeded!!!"
