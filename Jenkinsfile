@@ -16,7 +16,7 @@ node() {
 	  	echo "removing existing images first"
 	  	echo "this is the app reponame ${appRepoName}"
 	  	sh (
-	   script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
+	   script: "docker rmi \"${repoURI}\"/\"${appRepoName}\"",
 	  	)
 	  	echo "images removed now onto building a new image"
   		app = docker.build("${appRepoName}")
@@ -47,7 +47,7 @@ node() {
    echo "in docker run now with docker image = ${app}"
    echo "this is the build id = ${env.BUILD_ID}"
    sh (
-   script: "docker run -d --name predictainer-\"${env.BUILD_ID}\" -p 80:80 \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
+   script: "docker run -d --name predictainer-\"${env.BUILD_ID}\" -p 80:80 \"${appRepoName}\":\"${env.BUILD_ID}\"",
    	)
    
    echo "container created"
