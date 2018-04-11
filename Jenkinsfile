@@ -34,7 +34,7 @@ node() {
    there are no containers running or existing the error returned by docker rm command
    doesnt stop the pipeline process from running further */
    sh (
-   script: docker images |  xargs docker rmi -f 
+   script: docker rmi $(docker images -f) 
    """\
    docker ps -qa | xargs docker rm -f || true\
    """,
