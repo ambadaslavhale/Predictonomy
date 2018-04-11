@@ -13,7 +13,11 @@ node() {
  echo "out of checkout"
  
   stage('build'){
-  		echo "in build stage"
+	  	echo "removing existing images first"
+	  	sh (
+	   script: "docker rmi \"${repoURI}\"/\"${appRepoName}\"",
+	  	)
+	  	echo "images removed now onto building a new image"
   		app = docker.build("${appRepoName}")
    		echo "docker build succeeded!!!"
   	}
@@ -44,9 +48,7 @@ node() {
    sh (
    script: "docker run -d --name predictainer-\"${env.BUILD_ID}\" -p 80:80 \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
    	)
-   sh (
-   script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
-  	)
+   
    echo "container created"
    echo "THE END-------------------------"
    }
