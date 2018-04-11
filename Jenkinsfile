@@ -39,8 +39,7 @@ node() {
    there are no containers running or existing the error returned by docker rm command
    doesnt stop the pipeline process from running further */
    sh (
-   """\script:    
-   docker ps -qa | xargs docker rm -f || true\""",
+  
    )
    echo "in docker run now with docker image = ${app}"
    echo "this is the build id = ${env.BUILD_ID}"
