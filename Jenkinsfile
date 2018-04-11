@@ -34,7 +34,7 @@ node() {
    there are no containers running or existing the error returned by docker rm command
    doesnt stop the pipeline process from running further */
    sh (
-   script:  
+   script: 
    """\
    docker ps -qa | xargs docker rm -f || true\
    """,
@@ -43,6 +43,7 @@ node() {
    echo "this is the build id = ${env.BUILD_ID}"
    sh (
    script: "docker run -d --name predictainer-\"${env.BUILD_ID}\" -p 80:80 \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
+   script:  "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
   	)
    echo "container created"
    echo "THE END-------------------------"
