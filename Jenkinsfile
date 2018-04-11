@@ -43,7 +43,9 @@ node() {
    echo "this is the build id = ${env.BUILD_ID}"
    sh (
    script: "docker run -d --name predictainer-\"${env.BUILD_ID}\" -p 80:80 \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
-   "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
+   	)
+   sh (
+   script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
   	)
    echo "container created"
    echo "THE END-------------------------"
