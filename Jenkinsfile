@@ -16,8 +16,9 @@ node() {
 	  	echo "removing existing images first"
 	  	sh (
 	    """\
-	    script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",\""",
-	    )
+	    script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
+	    """,
+	  	)
 	  	echo "images removed now onto building a new image"
   		app = docker.build("${appRepoName}")
    		echo "docker build succeeded!!!"
@@ -39,14 +40,17 @@ node() {
    there are no containers running or existing the error returned by docker rm command
    doesnt stop the pipeline process from running further */
    sh (
-  
+   script: 
+   """\
+   docker ps -qa | xargs docker rm -f || true\
+   """,
    )
    echo "in docker run now with docker image = ${app}"
    echo "this is the build id = ${env.BUILD_ID}"
    sh (
    script: "docker run -d --name predictainer-\"${env.BUILD_ID}\" -p 80:80 \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
    	)
-   	echo "now that the image is running in container, we should remove the image"
+   	echo "now that the image is running in container we should remove the image"
    sh (
 	    script: "docker rmi \"${repoURI}\"/\"${appRepoName}\":\"${env.BUILD_ID}\"",
 	    )
