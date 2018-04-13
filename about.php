@@ -1,5 +1,14 @@
 <?php include "header.php"; ?>
   <!-- End Site Header --> 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109829483-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109829483-1');
+</script>
   <!-- Start Nav Backed Header -->
   <div class="nav-backed-header parallax" style="background-image:url(images/slide2.jpg);">
     <div class="container">
