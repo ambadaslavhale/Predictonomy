@@ -56,7 +56,7 @@ include "connect.php";
       <div class="container">
         <div class="row">
           <div class="col-sm-10 col-xs-10">
-            <h1 class="logo"> <a href="index.php"><img src="images/Predictonomy Logo Official v0.3.png" alt="Logo">Predicting the economy through AI</a></h1>
+            <h1 class="logo"> <a href="index.php"><img src="images/Predictonomy Logo Official v0.3.png" alt="Logo">Predicting the economy through Bullshit</a></h1>
           </div>
           <!-- <div class="col-xs-7">
             <h4 class="HeaderStrapline">Predicting the economy through AI</h4>
